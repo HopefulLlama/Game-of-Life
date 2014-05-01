@@ -1,3 +1,13 @@
 Conway's Game of Life
 
 An in browser application to allow to running of Conway's Game of Life.
+
+While in Edit Mode, click a cell to either bring it to life, or to kill it off.
+In Play Mode, watch as cells die, survive or reproduce accordingly to the rules of the Game Of Life (Wikipedia, 2014):
+
+- Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+- Any live cell with two or three live neighbours lives on to the next generation.
+- Any live cell with more than three live neighbours dies, as if by overcrowding.
+- Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+
+Powered by JavaScript, Kinetic.js, jQuery and Bootstrap.
