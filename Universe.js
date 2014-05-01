@@ -48,23 +48,39 @@ function Universe(rows, columns){
 
     this.setCellsArrays();
 
-    this.checkCellAliveNeighboursByCoordinates = checkCellAliveNeighboursByCoordinates;
-    function checkCellAliveNeighboursByCoordinates(row, column){
+    this.checkCellAliveNeighbours = checkCellAliveNeighbours;
+    function checkCellAliveNeighbours(row, column){
         var aliveNeighbours = 0;
         var neighbours = new Array();
-        neighbours.push(this.cells[row-1][column-1]);
-        neighbours.push(this.cells[row-1][column]);
-        neighbours.push(this.cells[row-1][column+1]);
+        if(row>0){
+            neighbours.push(this.cells[row-1][column]);
+            if(column>0){
+                neighbours.push(this.cells[row-1][column-1]);
+            }
+            if(column<this.columns-1){
+                neighbours.push(this.cells[row-1][column+1]);
+            }
+        }
 
-        neighbours.push(this.cells[row][column-1]);
-        neighbours.push(this.cells[row][column+1]);
+        if(row<this.rows-1){
+            neighbours.push(this.cells[row+1][column]);
+            if(column>0){
+                neighbours.push(this.cells[row+1][column-1]);
+            }
+            if(column<this.columns-1){
+                neighbours.push(this.cells[row+1][column+1]);
+            }
+        }
 
-        neighbours.push(this.cells[row+1][column-1]);
-        neighbours.push(this.cells[row+1][column]);
-        neighbours.push(this.cells[row+1][column+1]);
+        if(column>0){
+            neighbours.push(this.cells[row][column-1]);
+        }
+        if(column<this.columns-1){
+            neighbours.push(this.cells[row][column+1]);
+        }
 
         neighbours.forEach(function (neighbour){
-            if(neighbour,alive){
+            if(neighbour.alive){
                 aliveNeighbours++;
             }
         });
@@ -75,7 +91,7 @@ function Universe(rows, columns){
     function setCellNewState(){
         for(var i = 0; i < this.rows; i++){
             for(var j = 0; j < this.columns; j++){
-                var aliveNeighbours = checkCellAliveNeighboursByCoordinates(i, j);
+                var aliveNeighbours = checkCellAliveNeighbours(i, j);
                 if(this.cells[i][j].alive){
                     if(aliveNeighbours < 2 || aliveNeighbours > 3){
                         this.cells[i][j].setAlive(false);

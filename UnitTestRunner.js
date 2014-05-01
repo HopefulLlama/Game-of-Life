@@ -13,3 +13,11 @@ testUniverseDecreaseRows();
 testCreateUniverseColumns();
 testUniverseIncreaseColumns();
 testUniverseDecreaseColumns();
+
+testCheckingCellNeighbours();
+testCheckingCellNeighboursOn00();
+testCheckingCellNeighboursOnIJ();
+
+console.log("Of " + results.total + " tests, " +
+    results.bad + " failed, " +
+    (results.total - results.bad) + " passed.");
