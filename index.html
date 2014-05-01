@@ -4,17 +4,21 @@
     <meta name="Author" content="Jonathan Law" />
     <meta name="Keywords" content="Jonathan Law, Conway, Conway's Game of Life"/>
     <meta name="Description" content="In-browser Game of Life." />
-    <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"/> -->
+    <link rel="stylesheet" type="text/css" href="qunit-1.14.0.css"/>
     <link rel="shortcut icon" href="./../images/favicon.png"/>
 
+    <script src="qunit-1.14.0.js"></script>
     <!--
         Add Bootstrap
         Add jQuery
     -->
     <script src="Cell.js"></script>
+    <script src="Universe.js"></script>
     <script src="Controller.js"></script>
-
-    <script src="Main.js"></script>
+    <script src="Drawer.js"></script>
+    <script src="UnitTests.js"></script>
+    <script src="UnitTestRunner.js"></script>
 </head>
 <body>
     <canvas width="500px" height="250px"></canvas>

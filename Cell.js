@@ -1,8 +1,8 @@
 function Cell(){
     this.alive = false;
 
-    this.setAlive = setAlive(alive);
-    function setAlive(){
+    this.setAlive = setAlive;
+    function setAlive(alive){
         this.alive = alive;
     }
 }

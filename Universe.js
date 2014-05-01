@@ -3,18 +3,18 @@ function Universe(rows, columns){
     this.rows = rows;
 
     this.cells = new Array();
-    this.setCellsArray();
+
 
     this.setColumns = setColumns;
     function setColumns(columns){
         this.columns = columns;
-        this.setCellsArray();
+        this.setCellsArrays();
     }
 
-    this.setHeight = setRows;
+    this.setRows = setRows;
     function setRows(rows){
         this.rows = rows;
-        this.setCellsArray();
+        this.setCellsArrays();
     }
 
     this.setCellsArrays = setCellsArrays;
@@ -27,23 +27,26 @@ function Universe(rows, columns){
                 }
             }
         } else if(this.rows < this.cells.length) {
-            var i = cells.length - this.rows;
-            cells.splice(this.rows-1, i);
+            var i = this.cells.length - this.rows;
+            this.cells.splice(this.rows-1, i);
         }
 
+        var universe = this;
         if(this.columns > this.cells[0].length){
             this.cells.forEach(function(row){
-                for(var j = row.length; j < this.columns; j++){
+                for(var j = row.length; j < universe.columns; j++){
                     row[j] = new Cell();
                 }
             });
         } else if (this.columns < this.cells[0].length){
-            var j = cells[0].length - this.columns;
+            var j = this.cells[0].length - universe.columns;
             this.cells.forEach(function(row){
-                row.splice(this.columns-1, j);
+                row.splice(universe.columns-1, j);
             });
         }
     }
+
+    this.setCellsArrays();
 
     this.checkCellAliveNeighboursByCoordinates = checkCellAliveNeighboursByCoordinates;
     function checkCellAliveNeighboursByCoordinates(row, column){
