@@ -9,113 +9,104 @@ function processResults(passed, testName, expected, actual){
     }
 }
 
-function testCreateUniverseRows(){
+function testCreateUniverseColumns(columns){
     var name = arguments.callee.name;
     results.total++;
 
-    var rows = 5;
-    var testUniverse = new Universe(rows, 5);
+    var testUniverse = new Universe(columns, 5);
     var passed = true;
-    if(testUniverse.cells.length != rows){
+    if(testUniverse.cells.length != columns){
         passed = false;
     }
-    processResults(passed, name, rows, testUniverse.cells.length);
+    processResults(passed, name, columns, testUniverse.cells.length);
 }
 
-function testUniverseIncreaseRows(){
+function testUniverseIncreaseColumns(originalColumns, newColumns){
     var name = arguments.callee.name;
     results.total++;
 
-    var rows = 5;
-    var testUniverse = new Universe(rows, 5);
+    var testUniverse = new Universe(originalColumns, 5);
     var passed = true;
-    if(testUniverse.cells.length != rows){
+    if(testUniverse.cells.length != originalColumns){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", rows, testUniverse.cells.length);
+    processResults(passed, name+ ".PROBE-01", originalColumns, testUniverse.cells.length);
     if(passed) {
-        var newRows = 7;
-        testUniverse.setRows(newRows);
-        if (testUniverse.cells.length != newRows) {
-            passed = false;
-        }
-        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells.length);
-    }
-}
-
-function testUniverseDecreaseRows(){
-    var name = arguments.callee.name;
-    results.total++;
-
-    var rows = 5;
-    var testUniverse = new Universe(rows, 5);
-    var passed = true;
-    if(testUniverse.cells.length != rows){
-        passed = false;
-    }
-    processResults(passed, name+ ".PROBE-01", rows, testUniverse.cells.length);
-    if(passed) {
-        var newRows = 3;
-        testUniverse.setRows(newRows);
-        if (testUniverse.cells.length != newRows) {
-            passed = false;
-        }
-        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells.length);
-    }
-}
-
-function testCreateUniverseColumns(){
-    var name = arguments.callee.name;
-    results.total++;
-
-    var columns = 5;
-    var testUniverse = new Universe(5, columns);
-    var passed = true;
-    if(testUniverse.cells[0].length != columns){
-        passed = false;
-    }
-    processResults(passed, name, columns, testUniverse.cells[0].length);
-}
-
-function testUniverseIncreaseColumns(){
-    var name = arguments.callee.name;
-    results.total++;
-
-    var columns = 5;
-    var testUniverse = new Universe(5, columns);
-    var passed = true;
-    if(testUniverse.cells[0].length != columns){
-        passed = false;
-    }
-    processResults(passed, name+ ".PROBE-01", columns, testUniverse.cells[0].length);
-    if(passed) {
-        var newColumns = 7;
         testUniverse.setColumns(newColumns);
-        if (testUniverse.cells[0].length != newColumns) {
+        if (testUniverse.cells.length != newColumns) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells[0].length);
+        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells.length);
     }
 }
 
-function testUniverseDecreaseColumns(){
+function testUniverseDecreaseColumns(originalColumns, newColumns){
     var name = arguments.callee.name;
     results.total++;
 
-    var columns = 5;
-    var testUniverse = new Universe(5, columns);
+    var testUniverse = new Universe(originalColumns, 5);
     var passed = true;
-    if(testUniverse.cells[0].length != columns){
+    if(testUniverse.cells.length != originalColumns){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", columns, testUniverse.cells[0].length);
+    processResults(passed, name+ ".PROBE-01", originalColumns, testUniverse.cells.length);
     if(passed) {
         var newColumns = 3;
         testUniverse.setColumns(newColumns);
-        if (testUniverse.cells[0].length != newColumns) {
+        if (testUniverse.cells.length != newColumns) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells[0].length);
+        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells.length);
+    }
+}
+
+function testCreateUniverseRows(rows){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, rows);
+    var passed = true;
+    if(testUniverse.cells[0].length != rows){
+        passed = false;
+    }
+    processResults(passed, name, rows, testUniverse.cells[0].length);
+}
+
+function testUniverseIncreaseRows(originalRows, newRows){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, originalRows);
+    var passed = true;
+    if(testUniverse.cells[0].length != originalRows){
+        passed = false;
+    }
+    processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
+    if(passed) {
+        testUniverse.setColumns(newRows);
+        if (testUniverse.cells[0].length != newRows) {
+            passed = false;
+        }
+        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells[0].length);
+    }
+}
+
+function testUniverseDecreaseRows(originalRows, newRows){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, originalRows);
+    var passed = true;
+    if(testUniverse.cells[0].length != originalRows){
+        passed = false;
+    }
+    processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
+    if(passed) {
+        testUniverse.setColumns(newRows);
+        if (testUniverse.cells[0].length != newRows) {
+            passed = false;
+        }
+        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells[0].length);
     }
 }
 
@@ -174,4 +165,13 @@ function testCheckingCellNeighboursOnIJ(){
         passed = false;
     }
     processResults(passed, name, expectedAliveNeighbours, actualAliveNeighbours);
+}
+
+function testCellComeToLife(){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, 5);
+
+    testUniverse.cells
 }

@@ -1,15 +1,9 @@
-function Universe(rows, columns){
-    this.columns = columns;
+function Universe(columns, rows){
     this.rows = rows;
+    this.columns = columns;
 
     this.cells = new Array();
 
-
-    this.setColumns = setColumns;
-    function setColumns(columns){
-        this.columns = columns;
-        this.setCellsArrays();
-    }
 
     this.setRows = setRows;
     function setRows(rows){
@@ -17,31 +11,37 @@ function Universe(rows, columns){
         this.setCellsArrays();
     }
 
+    this.setColumns = setColumns;
+    function setColumns(columns){
+        this.columns = columns;
+        this.setCellsArrays();
+    }
+
     this.setCellsArrays = setCellsArrays;
     function setCellsArrays(){
-        if(this.rows > this.cells.length){
-            for(var i = this.cells.length; i < this.rows; i++){
+        if(this.columns > this.cells.length){
+            for(var i = this.cells.length; i < this.columns; i++){
                 this.cells[i] = new Array();
-                for(var j = 0; j < this.columns; j++){
+                for(var j = 0; j < this.rows; j++){
                     this.cells[i][j] = new Cell();
                 }
             }
-        } else if(this.rows < this.cells.length) {
-            var i = this.cells.length - this.rows;
-            this.cells.splice(this.rows-1, i);
+        } else if(this.columns < this.cells.length) {
+            var i = this.cells.length - this.columns;
+            this.cells.splice(this.columns-1, i);
         }
 
         var universe = this;
-        if(this.columns > this.cells[0].length){
+        if(this.rows > this.cells[0].length){
             this.cells.forEach(function(row){
-                for(var j = row.length; j < universe.columns; j++){
+                for(var j = row.length; j < universe.rows; j++){
                     row[j] = new Cell();
                 }
             });
-        } else if (this.columns < this.cells[0].length){
-            var j = this.cells[0].length - universe.columns;
+        } else if (this.rows < this.cells[0].length){
+            var j = this.cells[0].length - universe.rows;
             this.cells.forEach(function(row){
-                row.splice(universe.columns-1, j);
+                row.splice(universe.rows-1, j);
             });
         }
     }
@@ -49,34 +49,34 @@ function Universe(rows, columns){
     this.setCellsArrays();
 
     this.checkCellAliveNeighbours = checkCellAliveNeighbours;
-    function checkCellAliveNeighbours(row, column){
+    function checkCellAliveNeighbours(column, row){
         var aliveNeighbours = 0;
         var neighbours = new Array();
-        if(row>0){
-            neighbours.push(this.cells[row-1][column]);
-            if(column>0){
-                neighbours.push(this.cells[row-1][column-1]);
-            }
-            if(column<this.columns-1){
-                neighbours.push(this.cells[row-1][column+1]);
-            }
-        }
-
-        if(row<this.rows-1){
-            neighbours.push(this.cells[row+1][column]);
-            if(column>0){
-                neighbours.push(this.cells[row+1][column-1]);
-            }
-            if(column<this.columns-1){
-                neighbours.push(this.cells[row+1][column+1]);
-            }
-        }
-
         if(column>0){
-            neighbours.push(this.cells[row][column-1]);
+            neighbours.push(this.cells[column-1][row]);
+            if(row>0){
+                neighbours.push(this.cells[column-1][row-1]);
+            }
+            if(row<this.rows-1){
+                neighbours.push(this.cells[column-1][row+1]);
+            }
         }
+
         if(column<this.columns-1){
-            neighbours.push(this.cells[row][column+1]);
+            neighbours.push(this.cells[column+1][row]);
+            if(row>0){
+                neighbours.push(this.cells[column+1][row-1]);
+            }
+            if(row<this.rows-1){
+                neighbours.push(this.cells[column+1][row+1]);
+            }
+        }
+
+        if(row>0){
+            neighbours.push(this.cells[column][row-1]);
+        }
+        if(row<this.rows-1){
+            neighbours.push(this.cells[column][row+1]);
         }
 
         neighbours.forEach(function (neighbour){
@@ -89,8 +89,8 @@ function Universe(rows, columns){
 
     this.setCellNewState = setCellNewState;
     function setCellNewState(){
-        for(var i = 0; i < this.rows; i++){
-            for(var j = 0; j < this.columns; j++){
+        for(var i = 0; i < this.columns; i++){
+            for(var j = 0; j < this.rows; j++){
                 var aliveNeighbours = checkCellAliveNeighbours(i, j);
                 if(this.cells[i][j].alive){
                     if(aliveNeighbours < 2 || aliveNeighbours > 3){
