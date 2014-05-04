@@ -1,22 +1,28 @@
 console.log("Beginning unit tests...");
-var verbose = true;
+var verbose = false;
 
 var results = {
     total: 0,
     bad: 0
 };
 
-testCreateUniverseRows();
-testUniverseIncreaseRows();
-testUniverseDecreaseRows();
+testCreateUniverseRows(5);
+testUniverseIncreaseRows(5, 7);
+testUniverseDecreaseRows(5, 3);
 
-testCreateUniverseColumns();
-testUniverseIncreaseColumns();
-testUniverseDecreaseColumns();
+testCreateUniverseColumns(5);
+testUniverseIncreaseColumns(5, 7);
+testUniverseDecreaseColumns(5, 3);
 
 testCheckingCellNeighbours();
 testCheckingCellNeighboursOn00();
 testCheckingCellNeighboursOnIJ();
+
+testCellComeToLife();
+testCellSurvivesWithTwoNeighbours();
+testCellSurvivesWithThreeNeighbours();
+testCellDiesWithLessThanTwoNeighbours();
+testCellDiesWithMoreThanThreeNeighbours();
 
 console.log("Of " + results.total + " tests, " +
     results.bad + " failed, " +

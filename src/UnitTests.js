@@ -83,7 +83,7 @@ function testUniverseIncreaseRows(originalRows, newRows){
     }
     processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
     if(passed) {
-        testUniverse.setColumns(newRows);
+        testUniverse.setRows(newRows);
         if (testUniverse.cells[0].length != newRows) {
             passed = false;
         }
@@ -102,7 +102,7 @@ function testUniverseDecreaseRows(originalRows, newRows){
     }
     processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
     if(passed) {
-        testUniverse.setColumns(newRows);
+        testUniverse.setRows(newRows);
         if (testUniverse.cells[0].length != newRows) {
             passed = false;
         }
@@ -173,5 +173,111 @@ function testCellComeToLife(){
 
     var testUniverse = new Universe(5, 5);
 
-    testUniverse.cells
+    testUniverse.cells[2][1].setAlive(true);
+    testUniverse.cells[1][2].setAlive(true);
+    testUniverse.cells[1][3].setAlive(true);
+
+    var passed = true;
+
+    testUniverse.setNextGeneration();
+    if(!testUniverse.cells[2][2].alive){
+        passed = false;
+    }
+
+    processResults(passed, name, true, testUniverse.cells[2][2].alive);
 }
+
+function testCellDiesWithLessThanTwoNeighbours(){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, 5);
+
+    // Test Cell
+    testUniverse.cells[2][2].setAlive(true);
+
+    // Test Neighbours
+    testUniverse.cells[1][2].setAlive(true);
+
+    var passed = true;
+
+    testUniverse.setNextGeneration();
+    if(testUniverse.cells[2][2].alive){
+        passed = false;
+    }
+
+    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+}
+
+function testCellDiesWithMoreThanThreeNeighbours(){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, 5);
+
+    // Test Cell
+    testUniverse.cells[2][2].setAlive(true);
+
+    // Test Neighbours
+    testUniverse.cells[1][2].setAlive(true);
+    testUniverse.cells[3][2].setAlive(true);
+    testUniverse.cells[2][1].setAlive(true);
+    testUniverse.cells[2][3].setAlive(true);
+
+    var passed = true;
+
+    testUniverse.setNextGeneration();
+    if(testUniverse.cells[2][2].alive){
+        passed = false;
+    }
+
+    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+}
+
+function testCellSurvivesWithTwoNeighbours(){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, 5);
+
+    // Test Cell
+    testUniverse.cells[2][2].setAlive(true);
+
+    // Test Neighbours
+    testUniverse.cells[1][2].setAlive(true);
+    testUniverse.cells[3][2].setAlive(true);
+
+    var passed = true;
+
+    testUniverse.setNextGeneration();
+    if(!testUniverse.cells[2][2].alive){
+        passed = false;
+    }
+
+    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+}
+
+function testCellSurvivesWithThreeNeighbours(){
+    var name = arguments.callee.name;
+    results.total++;
+
+    var testUniverse = new Universe(5, 5);
+
+    // Test Cell
+    testUniverse.cells[2][2].setAlive(true);
+
+    // Test Neighbours
+    testUniverse.cells[1][2].setAlive(true);
+    testUniverse.cells[3][2].setAlive(true);
+    testUniverse.cells[2][1].setAlive(true);
+
+    var passed = true;
+
+    testUniverse.setNextGeneration();
+    if(!testUniverse.cells[2][2].alive){
+        passed = false;
+    }
+
+    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+}
+

@@ -2,7 +2,7 @@ function Universe(columns, rows){
     this.rows = rows;
     this.columns = columns;
 
-    this.cells = new Array();
+    this.cells = [];
 
 
     this.setRows = setRows;
@@ -21,7 +21,7 @@ function Universe(columns, rows){
     function setCellsArrays(){
         if(this.columns > this.cells.length){
             for(var i = this.cells.length; i < this.columns; i++){
-                this.cells[i] = new Array();
+                this.cells[i] = [];
                 for(var j = 0; j < this.rows; j++){
                     this.cells[i][j] = new Cell();
                 }
@@ -51,7 +51,7 @@ function Universe(columns, rows){
     this.checkCellAliveNeighbours = checkCellAliveNeighbours;
     function checkCellAliveNeighbours(column, row){
         var aliveNeighbours = 0;
-        var neighbours = new Array();
+        var neighbours = [];
         if(column>0){
             neighbours.push(this.cells[column-1][row]);
             if(row>0){
@@ -87,21 +87,20 @@ function Universe(columns, rows){
         return aliveNeighbours;
     }
 
-    this.setCellNewState = setCellNewState;
-    function setCellNewState(){
+    this.setNextGeneration = setNextGeneration;
+    function setNextGeneration(){
+        var nextGeneration = [];
         for(var i = 0; i < this.columns; i++){
+            nextGeneration[i] = [];
             for(var j = 0; j < this.rows; j++){
-                var aliveNeighbours = checkCellAliveNeighbours(i, j);
-                if(this.cells[i][j].alive){
-                    if(aliveNeighbours < 2 || aliveNeighbours > 3){
-                        this.cells[i][j].setAlive(false);
-                    }
-                } else {
-                    if(aliveNeighbours == 3){
-                        this.cells[i][j].setAlive(true);
-                    }
+                nextGeneration[i][j] = new Cell();
+                var aliveNeighbours = this.checkCellAliveNeighbours(i, j);
+                if( (this.cells[i][j].alive && aliveNeighbours == 2) || (aliveNeighbours == 3) ){
+                    nextGeneration[i][j].setAlive(true);
                 }
             }
         }
+        this.cells = nextGeneration;
     }
+
 }
