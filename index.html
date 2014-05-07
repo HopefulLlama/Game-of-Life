@@ -4,22 +4,135 @@
     <meta name="Author" content="Jonathan Law" />
     <meta name="Keywords" content="Jonathan Law, Conway, Conway's Game of Life"/>
     <meta name="Description" content="In-browser Game of Life." />
-    <!-- <link rel="stylesheet" type="text/css" href="stylesheet.css"/> -->
-    <link rel="stylesheet" type="text/css" href="./lib/qunit-1.14.0.css"/>
-    <!-- <link rel="shortcut icon" href="./../images/favicon.png"/> -->
 
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" href="./lib/qunit-1.14.0.css"/>
+
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css"/>
+
+    <script src="./lib/jquery-1.11.0.min.js"></script>
+    <script src="./lib/bootstrap.min.js"></script>
     <script src="./lib/qunit-1.14.0.js"></script>
-    <!--
-        Add Bootstrap
-        Add jQuery
-    -->
+    <script src="./lib/kinetic-v5.1.0.min.js"></script>
+
     <script src="./src/Cell.js"></script>
-    <script src="./src/Universe.js"></script>
+    <script src="./src/Grid.js"></script>
     <script src="./src/Controller.js"></script>
     <script src="./src/Drawer.js"></script>
     <script src="./src/UnitTests.js"></script>
     <script src="./src/UnitTestRunner.js"></script>
 </head>
 <body>
-    <canvas width="500px" height="250px"></canvas>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="aboutModalLabel">About</h4>
+                </div>
+                <div class="modal-body">
+                    Welcome to Game of Life - a JavaScript adaptation of <a href="#">Conway's Game of Life</a>. Game of Life can be described as
+                    a mathematics-based game, where cells within the game will either live on or die in the next generation according to the number
+                    of neighbours that are alive.<br>
+
+                    Rules:
+                    <ul>
+                        <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population </li>
+                        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                        <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+                        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+                    </ul>
+
+                    Following these rules, it is possible to create repeating patterns or constructors/factories. Try it yourself, or search online
+                    for defined examples.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Modal -->
+    <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="helpModalLabel">Help</h4>
+                </div>
+                <div class="modal-body">
+                    In the Play/Edit options:
+                    <ul>
+                        <li>Play Mode: Runs the current set up of the game, proceeding through the generations.</li>
+                        <li>Edit Mode: Stops the game, and allows you to click on the grid, setting up alive or dead cells.</li>
+                    </ul>
+
+                    In the Settings options:
+                    <ul>
+                        <li>Rows & Columns: Changes the dimensions of the playable space for the game (WARNING: Larger dimensions adversely affects performance).</li>
+                        <li>Speed: Changes the speed at which generations are processed.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="./about">Game of Life</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right" role="banner">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Play/Edit <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Play</a></li>
+                                <li><a href="#">Edit</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><span>
+                                    <span class="pull-left">Columns:</span><span class="pull-right"><input type="button" value="-" id="decrementColumn"> <input type="textbox" value="15" id="ColumnTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementColumn"></span>
+                                </span><br class="clear"></li>
+                                <li><span>
+                                    </span><span class="pull-left">Rows:</span><span class="pull-right"><input type="button" value="-" id="decrementRow"> <input type="textbox" value="15" id="RowTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementRow"></span>
+                                </span><br class="clear"></li>
+                                <li class="divider"></li>
+                                <li><span>
+                                    </span><span class="pull-left">Speed:</span><span class="pull-right"><input type="button" value="-" id="decrementSpeed"> <input type="textbox" value="15" id="SpeedTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementSpeed"></span>
+                                </span><br class="clear"></li>
+                            </ul>
+                            <li><a href="" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </div>
+    </nav>
+    <div class="container">
+    <canvas id="game" width="500px" height="250px"></canvas>
+    </div>
+
 </body>
