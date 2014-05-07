@@ -1,3 +1,3 @@
 function Controller(){
-    this.universe = new Universe(30, 15);
+    this.grid = new Grid(30, 15);
 }

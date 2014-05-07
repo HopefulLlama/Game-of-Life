@@ -9,104 +9,104 @@ function processResults(passed, testName, expected, actual){
     }
 }
 
-function testCreateUniverseColumns(columns){
+function testCreateGridColumns(columns){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(columns, 5);
+    var testGrid = new Grid(columns, 5);
     var passed = true;
-    if(testUniverse.cells.length != columns){
+    if(testGrid.cells.length != columns){
         passed = false;
     }
-    processResults(passed, name, columns, testUniverse.cells.length);
+    processResults(passed, name, columns, testGrid.cells.length);
 }
 
-function testUniverseIncreaseColumns(originalColumns, newColumns){
+function testGridIncreaseColumns(originalColumns, newColumns){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(originalColumns, 5);
+    var testGrid = new Grid(originalColumns, 5);
     var passed = true;
-    if(testUniverse.cells.length != originalColumns){
+    if(testGrid.cells.length != originalColumns){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", originalColumns, testUniverse.cells.length);
+    processResults(passed, name+ ".PROBE-01", originalColumns, testGrid.cells.length);
     if(passed) {
-        testUniverse.setColumns(newColumns);
-        if (testUniverse.cells.length != newColumns) {
+        testGrid.setColumns(newColumns);
+        if (testGrid.cells.length != newColumns) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells.length);
+        processResults(passed, name+ ".PROBE-02", newColumns, testGrid.cells.length);
     }
 }
 
-function testUniverseDecreaseColumns(originalColumns, newColumns){
+function testGridDecreaseColumns(originalColumns, newColumns){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(originalColumns, 5);
+    var testGrid = new Grid(originalColumns, 5);
     var passed = true;
-    if(testUniverse.cells.length != originalColumns){
+    if(testGrid.cells.length != originalColumns){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", originalColumns, testUniverse.cells.length);
+    processResults(passed, name+ ".PROBE-01", originalColumns, testGrid.cells.length);
     if(passed) {
         var newColumns = 3;
-        testUniverse.setColumns(newColumns);
-        if (testUniverse.cells.length != newColumns) {
+        testGrid.setColumns(newColumns);
+        if (testGrid.cells.length != newColumns) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newColumns, testUniverse.cells.length);
+        processResults(passed, name+ ".PROBE-02", newColumns, testGrid.cells.length);
     }
 }
 
-function testCreateUniverseRows(rows){
+function testCreateGridRows(rows){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, rows);
+    var testGrid = new Grid(5, rows);
     var passed = true;
-    if(testUniverse.cells[0].length != rows){
+    if(testGrid.cells[0].length != rows){
         passed = false;
     }
-    processResults(passed, name, rows, testUniverse.cells[0].length);
+    processResults(passed, name, rows, testGrid.cells[0].length);
 }
 
-function testUniverseIncreaseRows(originalRows, newRows){
+function testGridIncreaseRows(originalRows, newRows){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, originalRows);
+    var testGrid = new Grid(5, originalRows);
     var passed = true;
-    if(testUniverse.cells[0].length != originalRows){
+    if(testGrid.cells[0].length != originalRows){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
+    processResults(passed, name+ ".PROBE-01", originalRows, testGrid.cells[0].length);
     if(passed) {
-        testUniverse.setRows(newRows);
-        if (testUniverse.cells[0].length != newRows) {
+        testGrid.setRows(newRows);
+        if (testGrid.cells[0].length != newRows) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells[0].length);
+        processResults(passed, name+ ".PROBE-02", newRows, testGrid.cells[0].length);
     }
 }
 
-function testUniverseDecreaseRows(originalRows, newRows){
+function testGridDecreaseRows(originalRows, newRows){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, originalRows);
+    var testGrid = new Grid(5, originalRows);
     var passed = true;
-    if(testUniverse.cells[0].length != originalRows){
+    if(testGrid.cells[0].length != originalRows){
         passed = false;
     }
-    processResults(passed, name+ ".PROBE-01", originalRows, testUniverse.cells[0].length);
+    processResults(passed, name+ ".PROBE-01", originalRows, testGrid.cells[0].length);
     if(passed) {
-        testUniverse.setRows(newRows);
-        if (testUniverse.cells[0].length != newRows) {
+        testGrid.setRows(newRows);
+        if (testGrid.cells[0].length != newRows) {
             passed = false;
         }
-        processResults(passed, name+ ".PROBE-02", newRows, testUniverse.cells[0].length);
+        processResults(passed, name+ ".PROBE-02", newRows, testGrid.cells[0].length);
     }
 }
 
@@ -114,15 +114,15 @@ function testCheckingCellNeighbours(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
-    testUniverse.cells[0][0].alive = true;
-    testUniverse.cells[0][1].alive = true;
-    testUniverse.cells[0][2].alive = true;
+    testGrid.cells[0][0].alive = true;
+    testGrid.cells[0][1].alive = true;
+    testGrid.cells[0][2].alive = true;
 
     var passed = true;
     var expectedAliveNeighbours = 3;
-    var actualAliveNeighbours = testUniverse.checkCellAliveNeighbours(1, 1);
+    var actualAliveNeighbours = testGrid.checkCellAliveNeighbours(1, 1);
     if(actualAliveNeighbours != 3){
         passed = false;
     }
@@ -133,15 +133,15 @@ function testCheckingCellNeighboursOn00(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
-    testUniverse.cells[0][1].alive = true;
-    testUniverse.cells[1][1].alive = true;
-    testUniverse.cells[1][0].alive = true;
+    testGrid.cells[0][1].alive = true;
+    testGrid.cells[1][1].alive = true;
+    testGrid.cells[1][0].alive = true;
 
     var passed = true;
     var expectedAliveNeighbours = 3;
-    var actualAliveNeighbours = testUniverse.checkCellAliveNeighbours(0, 0);
+    var actualAliveNeighbours = testGrid.checkCellAliveNeighbours(0, 0);
     if(actualAliveNeighbours != 3){
         passed = false;
     }
@@ -152,15 +152,15 @@ function testCheckingCellNeighboursOnIJ(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
-    testUniverse.cells[3][4].alive = true;
-    testUniverse.cells[3][3].alive = true;
-    testUniverse.cells[4][3].alive = true;
+    testGrid.cells[3][4].alive = true;
+    testGrid.cells[3][3].alive = true;
+    testGrid.cells[4][3].alive = true;
 
     var passed = true;
     var expectedAliveNeighbours = 3;
-    var actualAliveNeighbours = testUniverse.checkCellAliveNeighbours(4, 4);
+    var actualAliveNeighbours = testGrid.checkCellAliveNeighbours(4, 4);
     if(actualAliveNeighbours != 3){
         passed = false;
     }
@@ -171,113 +171,113 @@ function testCellComeToLife(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
-    testUniverse.cells[2][1].setAlive(true);
-    testUniverse.cells[1][2].setAlive(true);
-    testUniverse.cells[1][3].setAlive(true);
+    testGrid.cells[2][1].setAlive(true);
+    testGrid.cells[1][2].setAlive(true);
+    testGrid.cells[1][3].setAlive(true);
 
     var passed = true;
 
-    testUniverse.setNextGeneration();
-    if(!testUniverse.cells[2][2].alive){
+    testGrid.setNextGeneration();
+    if(!testGrid.cells[2][2].alive){
         passed = false;
     }
 
-    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+    processResults(passed, name, true, testGrid.cells[2][2].alive);
 }
 
 function testCellDiesWithLessThanTwoNeighbours(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
     // Test Cell
-    testUniverse.cells[2][2].setAlive(true);
+    testGrid.cells[2][2].setAlive(true);
 
     // Test Neighbours
-    testUniverse.cells[1][2].setAlive(true);
+    testGrid.cells[1][2].setAlive(true);
 
     var passed = true;
 
-    testUniverse.setNextGeneration();
-    if(testUniverse.cells[2][2].alive){
+    testGrid.setNextGeneration();
+    if(testGrid.cells[2][2].alive){
         passed = false;
     }
 
-    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+    processResults(passed, name, true, testGrid.cells[2][2].alive);
 }
 
 function testCellDiesWithMoreThanThreeNeighbours(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
     // Test Cell
-    testUniverse.cells[2][2].setAlive(true);
+    testGrid.cells[2][2].setAlive(true);
 
     // Test Neighbours
-    testUniverse.cells[1][2].setAlive(true);
-    testUniverse.cells[3][2].setAlive(true);
-    testUniverse.cells[2][1].setAlive(true);
-    testUniverse.cells[2][3].setAlive(true);
+    testGrid.cells[1][2].setAlive(true);
+    testGrid.cells[3][2].setAlive(true);
+    testGrid.cells[2][1].setAlive(true);
+    testGrid.cells[2][3].setAlive(true);
 
     var passed = true;
 
-    testUniverse.setNextGeneration();
-    if(testUniverse.cells[2][2].alive){
+    testGrid.setNextGeneration();
+    if(testGrid.cells[2][2].alive){
         passed = false;
     }
 
-    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+    processResults(passed, name, true, testGrid.cells[2][2].alive);
 }
 
 function testCellSurvivesWithTwoNeighbours(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
     // Test Cell
-    testUniverse.cells[2][2].setAlive(true);
+    testGrid.cells[2][2].setAlive(true);
 
     // Test Neighbours
-    testUniverse.cells[1][2].setAlive(true);
-    testUniverse.cells[3][2].setAlive(true);
+    testGrid.cells[1][2].setAlive(true);
+    testGrid.cells[3][2].setAlive(true);
 
     var passed = true;
 
-    testUniverse.setNextGeneration();
-    if(!testUniverse.cells[2][2].alive){
+    testGrid.setNextGeneration();
+    if(!testGrid.cells[2][2].alive){
         passed = false;
     }
 
-    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+    processResults(passed, name, true, testGrid.cells[2][2].alive);
 }
 
 function testCellSurvivesWithThreeNeighbours(){
     var name = arguments.callee.name;
     results.total++;
 
-    var testUniverse = new Universe(5, 5);
+    var testGrid = new Grid(5, 5);
 
     // Test Cell
-    testUniverse.cells[2][2].setAlive(true);
+    testGrid.cells[2][2].setAlive(true);
 
     // Test Neighbours
-    testUniverse.cells[1][2].setAlive(true);
-    testUniverse.cells[3][2].setAlive(true);
-    testUniverse.cells[2][1].setAlive(true);
+    testGrid.cells[1][2].setAlive(true);
+    testGrid.cells[3][2].setAlive(true);
+    testGrid.cells[2][1].setAlive(true);
 
     var passed = true;
 
-    testUniverse.setNextGeneration();
-    if(!testUniverse.cells[2][2].alive){
+    testGrid.setNextGeneration();
+    if(!testGrid.cells[2][2].alive){
         passed = false;
     }
 
-    processResults(passed, name, true, testUniverse.cells[2][2].alive);
+    processResults(passed, name, true, testGrid.cells[2][2].alive);
 }
 

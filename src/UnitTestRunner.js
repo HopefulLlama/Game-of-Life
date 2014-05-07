@@ -6,13 +6,13 @@ var results = {
     bad: 0
 };
 
-testCreateUniverseRows(5);
-testUniverseIncreaseRows(5, 7);
-testUniverseDecreaseRows(5, 3);
+testCreateGridRows(5);
+testGridIncreaseRows(5, 7);
+testGridDecreaseRows(5, 3);
 
-testCreateUniverseColumns(5);
-testUniverseIncreaseColumns(5, 7);
-testUniverseDecreaseColumns(5, 3);
+testCreateGridColumns(5);
+testGridIncreaseColumns(5, 7);
+testGridDecreaseColumns(5, 3);
 
 testCheckingCellNeighbours();
 testCheckingCellNeighboursOn00();

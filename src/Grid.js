@@ -1,9 +1,8 @@
-function Universe(columns, rows){
+function Grid(columns, rows){
     this.rows = rows;
     this.columns = columns;
 
     this.cells = [];
-
 
     this.setRows = setRows;
     function setRows(rows){
