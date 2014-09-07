@@ -18,6 +18,7 @@
 
     <script src="./src/Cell.js"></script>
     <script src="./src/Grid.js"></script>
+    <script src="./src/UIHandler.js"></script>
     <script src="./src/Controller.js"></script>
     <script src="./src/Drawer.js"></script>
     <script src="./src/UnitTests.js"></script>
@@ -113,10 +114,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li><span>
-                                    <span class="pull-left">Columns:</span><span class="pull-right"><input type="button" value="-" id="decrementColumn"> <input type="textbox" value="15" id="ColumnTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementColumn"></span>
+                                    <span class="pull-left">Columns:</span><span class="pull-right"><input type="button" value="-" id="decrementColumn"> <input type="textbox" value="10" id="ColumnTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementColumn"></span>
                                 </span><br class="clear"></li>
                                 <li><span>
-                                    </span><span class="pull-left">Rows:</span><span class="pull-right"><input type="button" value="-" id="decrementRow"> <input type="textbox" value="15" id="RowTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementRow"></span>
+                                    </span><span class="pull-left">Rows:</span><span class="pull-right"><input type="button" value="-" id="decrementRow"> <input type="textbox" value="5" id="RowTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementRow"></span>
                                 </span><br class="clear"></li>
                                 <li class="divider"></li>
                                 <li><span>
@@ -132,6 +133,7 @@
         </div>
     </nav>
     <div id="container">
+        <canvas id="canvas" />
     </div>
 
 </body>

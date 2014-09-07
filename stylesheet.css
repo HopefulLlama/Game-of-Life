@@ -5,3 +5,11 @@
 br.clear{
     clear: both;
 }
+
+#container{
+	width: 100%;
+	text-align: center;
+}
+
+#canvas{
+}
