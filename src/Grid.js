@@ -102,4 +102,27 @@ function Grid(columns, rows){
         this.cells = nextGeneration;
     }
 
+    this.toString = toString;
+    function toString() {
+        var string = "";
+        for (var i = 0; i < this.cells[0].length; i++){
+            for (var j = 0; j < this.cells.length; j++){
+                var cell = "";
+                if(this.cells[j][i].alive) {
+                    cell = "*";
+                } else {
+                    cell = "X";
+                }
+                if (j === 0) { 
+                    string += "|"+cell+"|";
+                } else {
+                    string += cell + "|";
+                }
+            }
+            string += "\n";    
+        }
+        
+        return string;
+    }
+
 }

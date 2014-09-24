@@ -20,8 +20,19 @@
  			height: height
  		});	
 		
- 		for (var i = 0; i < controller.grid.cells.length; i++){
- 			for (var j = 0; j < controller.grid.cells[0].length; j++){ 				
+ 		this.drawGrid(controller.grid);
+ 	} 
+
+ 	this.resizeCanvas = resizeCanvas;
+ 	function resizeCanvas() {
+ 		controller.drawer.canvas.width = controller.grid.cells.length*controller.drawer.cellWidth;
+ 		controller.drawer.canvas.height = controller.grid.cells[0].length*controller.drawer.cellWidth;
+ 	};
+
+ 	this.drawGrid = drawGrid;
+ 	function drawGrid(grid) {
+ 		for (var i = 0; i < grid.cells.length; i++){
+ 			for (var j = 0; j < grid.cells[0].length; j++){ 				
  				var rectangle;
 				rectangle = controller.drawer.canvas.display.rectangle({
 					x: (i*controller.drawer.cellWidth)+2,
@@ -32,9 +43,14 @@
 				});
 				rectangle.column = i;
  				rectangle.row = j;
+ 				if (controller.grid.cells[i][j].alive) {
+ 					this.fill = controller.drawer.aliveFill; 
+ 				} else {
+ 					this.fill = controller.drawer.deadFill;
+ 				}
  				rectangle.bind("click tap", function () {
- 					controller.grid.cells[this.column][this.row].toggleAlive();
- 					if (controller.grid.cells[this.column][this.row].alive) {
+ 					grid.cells[this.column][this.row].toggleAlive();
+ 					if (grid.cells[this.column][this.row].alive) {
  						this.fill = controller.drawer.aliveFill; 
  					} else {
  						this.fill = controller.drawer.deadFill;
@@ -44,13 +60,20 @@
 				controller.drawer.canvas.addChild(rectangle);
  			}
  		}
-
  		controller.drawer.canvas.redraw();
- 	} 
+ 	}
 
- 	this.resizeCanvas = resizeCanvas;
- 	function resizeCanvas() {
- 		controller.drawer.canvas.width = controller.grid.cells.length*controller.drawer.cellWidth;
- 		controller.drawer.canvas.height = controller.grid.cells[0].length*controller.drawer.cellWidth;
- 	};
+ 	this.updateGrid = updateGrid;
+ 	function updateGrid(){
+ 		controller.drawer.canvas.children.forEach(function (child){
+ 			i = child.column;
+			j = child.row;
+			if (controller.grid.cells[i][j].alive) {
+				child.fill = controller.drawer.aliveFill; 
+			} else {
+				child.fill = controller.drawer.deadFill;
+			}
+ 		});
+		controller.drawer.canvas.redraw();
+ 	}
  }

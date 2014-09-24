@@ -21,10 +21,10 @@ function UIHandler() {
 		 *  Play/Edit buttons
 		 */
 		$("#playButton").click(function (event) {
-			controller.toggleMode.call(controller);
+			controller.gameRunner.toggleMode.call(controller.gameRunner);
 		});
 		$("#editButton").click(function (event) {
-			controller.toggleMode.call(controller);
+			controller.gameRunner.toggleMode.call(controller.gameRunner);
 		});
 
 		$("#columnTextbox").val(controller.grid.columns);
