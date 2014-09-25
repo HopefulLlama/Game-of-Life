@@ -10,8 +10,8 @@
  	
  	this.initialise = initialise;
  	function initialise () {
-		var width = (controller.grid.cells.length*controller.drawer.cellWidth)+5;
-		var height = (controller.grid.cells[0].length*controller.drawer.cellWidth)+5;
+		var width = (controller.grid.cells.length*controller.drawer.cellWidth)+4;
+		var height = (controller.grid.cells[0].length*controller.drawer.cellWidth)+4;
 
  		this.canvas = oCanvas.create({
  			canvas: '#canvas',
@@ -21,12 +21,13 @@
  		});	
 		
  		this.drawGrid(controller.grid);
+ 		this.resizeCanvas();
  	} 
 
  	this.resizeCanvas = resizeCanvas;
  	function resizeCanvas() {
- 		controller.drawer.canvas.width = controller.grid.cells.length*controller.drawer.cellWidth;
- 		controller.drawer.canvas.height = controller.grid.cells[0].length*controller.drawer.cellWidth;
+ 		controller.drawer.canvas.width = (controller.grid.cells.length*controller.drawer.cellWidth)+4;
+ 		controller.drawer.canvas.height = (controller.grid.cells[0].length*controller.drawer.cellWidth)+4;
  	};
 
  	this.drawGrid = drawGrid;
@@ -49,13 +50,15 @@
  					this.fill = controller.drawer.deadFill;
  				}
  				rectangle.bind("click tap", function () {
- 					grid.cells[this.column][this.row].toggleAlive();
- 					if (grid.cells[this.column][this.row].alive) {
- 						this.fill = controller.drawer.aliveFill; 
- 					} else {
- 						this.fill = controller.drawer.deadFill;
- 					}
- 					controller.drawer.canvas.redraw();
+ 					if (!controller.gameRunner.play) {
+	 					grid.cells[this.column][this.row].toggleAlive();
+	 					if (grid.cells[this.column][this.row].alive) {
+	 						this.fill = controller.drawer.aliveFill; 
+	 					} else {
+	 						this.fill = controller.drawer.deadFill;
+	 					}
+	 					controller.drawer.canvas.redraw();
+	 				}
 				});
 				controller.drawer.canvas.addChild(rectangle);
  			}
