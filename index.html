@@ -86,6 +86,29 @@
         </div>
     </div>
 
+    <!-- Links Modal -->
+    <div class="modal fade" id="linksModal" tabindex="-1" role="dialog" aria-labelledby="linksModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header  bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="linksModalLabel">External Libraries</h4>
+                </div>
+                <div class="modal-body">
+                    <p><b><a href="http://ocanvas.org/">oCanvas</a></b> - Canvas drawing made easy.</p>
+                    <p><b><a href="https://qunitjs.com/">QUnit</a></b> - Powerful unit testing framework.</p>
+                    <p><b><a href="http://jquery.com/">jQuery</a></b> - Feature rich library to each the usage of JavaScript.</p>
+                    <p><b><a href="http://getbootstrap.com/">Bootstrap</a></b> - Framework to develop responsive web pages.</p>
+                    <p><b><a href="http://glyphicons.com/">GLYPHICONS</a></b> - Library of monochromatic icons and symbols.</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -121,9 +144,10 @@
                                 <li><span>
                                     </span><span class="pull-left">Speed:</span><span class="pull-right"><input type="button" value="-" id="decrementSpeed"> <input type="textbox" value="" id="speedTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementSpeed"></span>
                                 </span><br class="clear"></li>-->
-                            </ul>
+                            </ul></li>
                             <li><a href="" data-toggle="modal" data-target="#aboutModal">About</a></li>
-                        <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
+                            <li><a href="" data-toggle="modal" data-target="#linksModal">Links</a></li>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
