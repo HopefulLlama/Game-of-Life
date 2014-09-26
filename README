@@ -10,4 +10,4 @@ In Play Mode, watch as cells die, survive or reproduce accordingly to the rules 
 - Any live cell with more than three live neighbours dies, as if by overcrowding.
 - Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
 
-Powered by JavaScript, Kinetic.js, jQuery and Bootstrap.
+Powered by JavaScript, oCanvas, jQuery and Bootstrap.
