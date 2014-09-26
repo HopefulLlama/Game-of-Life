@@ -11,7 +11,6 @@ function GameRunner() {
     this.execute = execute;
     function execute() {
         setInterval(function () {
-            console.log(controller.gameRunner.play);
             if(controller.gameRunner.play) {
                 controller.grid.setNextGeneration();
                 controller.drawer.updateGrid();

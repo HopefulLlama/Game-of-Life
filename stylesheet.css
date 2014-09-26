@@ -6,6 +6,10 @@
     width: 30px;
 }
 
+#settingsMenu{
+	padding: 5px;
+} 
+
 br.clear{
     clear: both;
 }
@@ -13,7 +17,4 @@ br.clear{
 #container{
 	width: 100%;
 	text-align: center;
-}
-
-#canvas{
 }

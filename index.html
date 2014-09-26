@@ -108,19 +108,19 @@
                             <button id="playButton" type="button" class="btn btn-default">Play</button> 
                             <button id="editButton" type="button" class="btn btn-default" disabled="disabled">Edit</button> 
                         </div></span></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
+                        <li id="settingsButton" class="dropdown">
+                            <a id="settingsLink" href="#" class="dropdown-toggle" data-toggle="dropdown">Settings <b class="caret"></b></a>
+                            <ul id="settingsMenu" class="dropdown-menu">
                                 <li><span>
                                     <span class="pull-left">Columns:</span><span class="pull-right"><input type="button" value="-" id="decrementColumn"> <input type="textbox" value="" id="columnTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementColumn"></span>
                                 </span><br class="clear"></li>
                                 <li><span>
                                     </span><span class="pull-left">Rows:</span><span class="pull-right"><input type="button" value="-" id="decrementRow"> <input type="textbox" value="" id="rowTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementRow"></span>
                                 </span><br class="clear"></li>
-                                <li class="divider"></li>
+                                <!-- <li class="divider"></li>
                                 <li><span>
                                     </span><span class="pull-left">Speed:</span><span class="pull-right"><input type="button" value="-" id="decrementSpeed"> <input type="textbox" value="" id="speedTextbox" class="settingsTextbox"/> <input type="button" value="+" id="incrementSpeed"></span>
-                                </span><br class="clear"></li>
+                                </span><br class="clear"></li>-->
                             </ul>
                             <li><a href="" data-toggle="modal" data-target="#aboutModal">About</a></li>
                         <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
