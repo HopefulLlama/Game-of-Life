@@ -37,7 +37,7 @@ function Controller(){
         var success = true;
         if (value == controller.grid.columns) {
             // Do nothing to save some processing;
-        } else if ((value > 1) && (value % 1 == 0)){
+        } else if ((value > 0) && (value % 1 == 0)){
             columnCount = parseInt(value);
             controller.grid.setColumns(columnCount);
             controller.drawer.updateGridSize(controller.grid);
@@ -68,7 +68,7 @@ function Controller(){
         var success = true;
         if (value == controller.grid.rows) {
             // Do nothing to save some processing;
-        } else if ((value > 1) && (value % 1 == 0)){
+        } else if ((value > 0) && (value % 1 == 0)){
             rowCount = parseInt(value);
             controller.grid.setRows(rowCount);
             controller.drawer.updateGridSize(controller.grid);
