@@ -27,22 +27,25 @@ function UIHandler() {
 			controller.gameRunner.toggleMode.call(controller.gameRunner);
 		});
 
-		$("#columnTextbox").val(controller.grid.columns);
-		$("#rowTextbox").val(controller.grid.rows);
-
-		$("#settings-menu").click(function (event) {
+		/*
+		 *  Settings Menu
+		 */
+		$("#settingsMenu").click(function (event) {
 			event.stopPropagation();
 		});
 
+		/*
+		 *  Columns Stuff
+		 */
 		$("#decrementColumn").click(function (event){
 			controller.decrementColumnCount();
 	        event.stopPropagation();
 		});
 
+		$("#columnTextbox").val(controller.grid.columns);
 		$("#columnTextbox").click(function (event){
 	        event.stopPropagation();
 		});
-
 		$("#columnTextbox").blur(function (event){
 			if (!controller.changeColumnCount(this.value)) {
 	            this.focus();
@@ -56,15 +59,18 @@ function UIHandler() {
 	        event.stopPropagation();
 		});
 
+		/*
+		 *  Row stuff
+		 */
 		$("#decrementRow").click(function (event){
 			controller.decrementRowCount();
 	        event.stopPropagation();
 		});
 
+		$("#rowTextbox").val(controller.grid.rows);
 		$("#rowTextbox").click(function (event){
 	        event.stopPropagation();
 		});
-
 		$("#rowTextbox").blur(function (event){
 			if (!controller.changeRowCount(this.value)) {
 	            this.focus();
@@ -76,6 +82,34 @@ function UIHandler() {
 		$("#incrementRow").click(function (event){
 			controller.incrementRowCount();
 	        event.stopPropagation();
+		});
+
+		/*
+		 *  Speed stuff
+		 */
+		$("#speedTextbox").val(controller.gameRunner.speed);
+		$("#speedTextbox").click(function (event){
+	        event.stopPropagation();
+		});
+		$("#speedTextbox").blur(function (event){
+			if (!controller.changeSpeed(this.value)) {
+	            this.focus();
+            	alert("Please enter an integer value higher than 0 and less than 100.");
+			}
+	        event.stopPropagation();
+		});
+
+		$("#speedRange").val(controller.gameRunner.speed);
+		$("#speedRange").change(function (event){
+			controller.gameRunner.setSpeed($("#speedRange").val());
+			$("#speedTextbox").val(controller.gameRunner.speed);
+		});
+
+		/*
+		 *  Clear stuff
+		 */
+		$("#clearGrid").click(function (event) {
+			controller.clearGrid(controller.grid);
 		});
 	}
 
