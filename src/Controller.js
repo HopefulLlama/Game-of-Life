@@ -26,8 +26,9 @@ function Controller(){
     this.decrementColumnCount = decrementColumnCount;
     function decrementColumnCount() {
         if(this.grid.columns > 1) {
-            this.grid.columns--;
+            this.grid.setColumns(this.grid.columns-1);
             $("#columnTextbox").val(controller.grid.columns);
+            controller.drawer.updateGridSize(controller.grid);
         }
     }
 
@@ -38,7 +39,8 @@ function Controller(){
             // Do nothing to save some processing;
         } else if ((value > 1) && (value % 1 == 0)){
             columnCount = parseInt(value);
-            controller.grid.columns = columnCount;
+            controller.grid.setColumns(columnCount);
+            controller.drawer.updateGridSize(controller.grid);
         } else {
             success = false;
         }
@@ -47,15 +49,17 @@ function Controller(){
 
     this.incrementColumnCount = incrementColumnCount;
     function incrementColumnCount() {
-        this.grid.columns++;
+        this.grid.setColumns(this.grid.columns+1);
         $("#columnTextbox").val(controller.grid.columns);
+        controller.drawer.updateGridSize(controller.grid);
     }
 
     this.decrementRowCount = decrementRowCount;
     function decrementRowCount() {
         if(this.grid.rows > 1) {
-            this.grid.rows--;
+            this.grid.setRows(this.grid.rows-1);
             $("#rowTextbox").val(controller.grid.rows);
+            controller.drawer.updateGridSize(controller.grid);
         }
     }
 
@@ -66,7 +70,8 @@ function Controller(){
             // Do nothing to save some processing;
         } else if ((value > 1) && (value % 1 == 0)){
             rowCount = parseInt(value);
-            controller.grid.rows = rowCount;
+            controller.grid.setRows(rowCount);
+            controller.drawer.updateGridSize(controller.grid);
         } else {
             success = false;
         }
@@ -76,7 +81,8 @@ function Controller(){
 
     this.incrementRowCount = incrementRowCount;
     function incrementRowCount() {
-        this.grid.rows++;
+        controller.grid.setRows(this.grid.rows+1);
         $("#rowTextbox").val(controller.grid.rows);
+        controller.drawer.updateGridSize(controller.grid);
     }
 }
