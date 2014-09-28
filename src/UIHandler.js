@@ -12,7 +12,29 @@ function UIHandler() {
 		this.htmlCanvas.width = width;
 		this.htmlCanvas.height = height;
 
+		this.setUpHelp();
 		this.bindEvents();
+	}
+
+	this.setUpHelp = setUpHelp;
+	function setUpHelp() {
+		$(".helpPanel").css("display", "none");
+		$("#contents").css("display", "block");
+
+		$(".helpPanelButton").click(function (event){
+			if($($(event.target).attr("data-target")).css("display") !== "block") {
+				$(".helpPanel").slideUp();
+				$($(event.target).attr("data-target")).slideDown();
+	
+				$(".helpPanelItem").removeClass("active");
+				$(".helpPanelItem").each(function (index) {
+					if ($(this).attr("data-page") === $(event.target).attr("data-page")) {
+						$(this).addClass("active");		
+					}
+				});
+			}
+		});
+
 	}
 
 	this.bindEvents = bindEvents;

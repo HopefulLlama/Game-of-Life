@@ -1,4 +1,5 @@
-<html>
+
+                        </div><html>
 <head>
     <title>Game of Life</title>
     <meta name="Author" content="Jonathan Law" />
@@ -27,57 +28,132 @@
     <script src="./src/UnitTestRunner.js"></script>
 </head>
 <body>
-
-    <!-- About Modal -->
-    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header  bg-primary">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="aboutModalLabel">About</h4>
-                </div>
-                <div class="modal-body">
-                    Welcome to Game of Life - a JavaScript adaptation of <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a>. Game of Life can be described as
-                    a mathematics-based game, where cells within the game will either live on or die in the next generation according to the number
-                    of neighbours that are alive.<br>
-
-                    Rules:
-                    <ul>
-                        <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population </li>
-                        <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
-                        <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
-                        <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
-                    </ul>
-
-                    Following these rules, it is possible to create repeating patterns or constructors/factories. Try it yourself, or search online
-                    for defined examples.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Help Modal -->
     <div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header  bg-primary">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="helpModalLabel">Help</h4>
                 </div>
                 <div class="modal-body">
-                    In the Play/Edit options:
-                    <ul>
-                        <li>Play Mode: Runs the current set up of the game, proceeding through the generations.</li>
-                        <li>Edit Mode: Stops the game, and allows you to click on the grid, setting up alive or dead cells.</li>
-                    </ul>
+                    <!-- Contents -->
+                    <div id="contents" class="panel panel-info helpPanel">
+                        <div class="panel-heading">Contents</div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item"><span class="badge">p.2</span><a class="helpPanelButton" href="#" data-target="#intro" data-page="2">Introduction</a></li>
+                                <li class="list-group-item"><span class="badge">p.3</span><a class="helpPanelButton" href="#" data-target="#ui" data-page="3">UI</a></li>
+                                <li class="list-group-item"><span class="badge">p.4</span><a class="helpPanelButton" href="#" data-target="#modes" data-page="4">Play/Edit Mode</a></li>
+                                <li class="list-group-item"><span class="badge">p.5</span><a class="helpPanelButton" href="#" data-target="#patterns" data-page="5">Patterns</a></li>
+                                <li class="list-group-item"><span class="badge">p.6</span><a class="helpPanelButton" href="#" data-target="#settings" data-page="6">Settings</a></li>
+                            </ul>
+                        </div>
+                    </div>
 
-                    In the Settings options:
-                    <ul>
-                        <li>Rows & Columns: Changes the dimensions of the playable space for the game (WARNING: Larger dimensions adversely affects performance).</li>
-                    </ul>
+                    <!-- Intro -->
+                    <div id="intro" class="panel panel-info helpPanel">
+                        <div class="panel-heading">Introduction</div>
+                        <div class="panel-body">
+                            <p>Welcome to Game of Life - a JavaScript adaptation of <a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life">Conway's Game of Life</a>. Game of Life can be described as a mathematics-based game, where cells within the game will either live on or die in the next generation according to the number
+                            of neighbours that are alive.</p>
+                            <div class="well">
+                                Rules:
+                                <ul>
+                                    <li>Any live cell with fewer than two live neighbours dies, as if caused by under-population </li>
+                                    <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+                                    <li>Any live cell with more than three live neighbours dies, as if by overcrowding.</li>
+                                    <li>Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.</li>
+                                </ul>
+                            </div>
+                            <p>Following these rules, it is possible to create repeating patterns or constructors/factories. Try it yourself, or search online or through the help pages for defined examples.</p>
+                        </div>
+                    </div>
+
+                    <!-- UI -->
+                    <div id="ui" class="panel panel-info helpPanel">
+                        <div class="panel-heading">UI</div>
+                        <div class="panel-body">
+                            <img class="img-responsive img-rounded" src="assets/img/ui.png" alt="Shot of the UI" />
+                            <figcaption>A screenshot showing the UI, which highlighted areas.</figcaption>
+                            <hr />
+                            <dl class="dl-horizontal">
+                                <dt>1 - Page Title</dt><dd>A simple branding to show the title of the page. No functional purpose</dd>
+                                <dt>2 - Menu Items</dt><dd>Menu items which affect the usage of the application are listed here. Further information about specific menu items can be found elsewhere in the help pages.</dd>
+                                <dt>3 - Game View</dt><dd>Here is where the action happens; where cells live and die.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <!-- Play Mode -->
+                    <div id="modes" class="panel panel-info helpPanel">
+                        <div class="panel-heading">Play/Edit Mode</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6 center">
+                                    <img class="img-responsive img-rounded center" src="assets/img/dead-cell.png" alt="A dead cell" />
+                                    <figcaption>A dead cell</figcaption>
+                                </div>
+                                <div class="col-sm-6 center">
+                                    <img class="img-responsive img-rounded center" src="assets/img/alive-cell.png" alt="A living cell" />
+                                    <figcaption>An living cell</figcaption>                                    
+                                </div>
+                            </div>
+                            <hr />
+                            <h3>Play Mode</h3>
+                            <p>Entering Play mode has several effects. It begins the execution of the game, killing and raising cells upon each new generation as according to the rules of Game of Life. An alive cell is indicated by a filled in square, whereas dead cells are indicated by squares which are not filled in. Be sure to keep an eye out for any changes between each generation. In addition, it disables the changing of cell state within the grid, as well as locking the settings. If you wish to makes changes to either the cells or the settings, you must exit Play mode by entering Edit mode.</p>
+                            <p>The execution of the game can be quickened or slowed by changing the speed in the settings. </p>
+
+                            <h3>Edit Mode</h3>
+                            <p>While in Edit mode you can make changes to cells' state directly by clicking on the grid in the game view, or through the settings. An alive cell is indicated by a filled in square, whereas dead cells are indicated by squares which are not filled in. Click on a cell to toggle it's state from alive to dead, and vice versa. Once you are satisfied with the initial set up of your cells, enter Play mode to see how well your cells will fare throughout the generations.</p>
+                        </div>
+                    </div>  
+                    <!-- Patterns -->
+                    <div id="patterns" class="panel panel-info helpPanel">
+                        <div class="panel-heading">Patterns</div>
+                        <div class="panel-body">
+                            <p>In Game of Life, there have been several defined patterns noted by the community as it exhibits a special behaviour. Groups of patterns covered in the following listing include still life, oscillators, spaceships, replicators, factories/guns and infinite life patterns.</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Still Life</dt><dd>A still life is called as such, due to their nature of remaining stable throughout generations. They do not spawn or kill off any cells or any surrounding cells in their vicinity.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Oscillators</dt><dd>Oscillators will kill and spawn cells in a repetitive cycle which spans several generations. However, within this repeated cycle they can be considered to be stable, as they will reliably repeat this pattern.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Spaceships</dt><dd>A stationary life isn't an end game for all cells. Spaceships will move across the grid, and will maintain some kind of form or shape which will repeat over few generations. They can continue to travel until they are interrupted by the presence of other cells.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Replicators</dt><dd>Discovered relatively recently, a replicator will create an exact copy of itself while destroying the original in the process.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Factories/Gun</dt><dd>These cells are positioned such that they will continually spawn a spaceship which will then glide across the grid.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Infinite Life</dt><dd>Having an initial set up which uses an infinite life pattern will ensure that your cells will live on throughout the ages without fail, while also not being as stationary and unchanging as a still life.</dd></dl></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div id="settings" class="panel panel-info helpPanel">
+                        <div class="panel-heading">Settings</div>
+                        <div class="panel-body">
+                            <div class="center">
+                                <img class="img-responsive img-rounded center" src="assets/img/settings.png" alt="A shot of the settings." />
+                                <figcaption>A shot of the settings.</figcaption>
+                            </div>
+                            <hr/>
+                            <p>Using the settings will let you alter some aspects of the game itself. Below is an explanation of the settings, how to change them and what values are allowed if applicable.</p>
+                            <ul class="list-group">
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Columns</dt><dd>This affects the grid. This specifies the number of columns to use in our grid. This can be changed through the plus or minus buttons, or by manual entering a number into the textbox. Only integers higher than 0 (non-inclusive) are accepted. <br /><br />WARNING: A higher value has an adverse affect on performance. Be sure to increment slowly to ensure smooth performance.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Rows</dt><dd>This affects the grid. This specifies the number of rows to use in our grid. This can be changed through the plus or minus buttons, or by manual entering a number into the textbox. Only integers higher than 0 (non-inclusive) are accepted. <br /><br />WARNING: A higher value has an adverse affect on performance. Be sure to increment slowly to ensure smooth performance.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Speed</dt><dd>This affects the execution of the game. This is used as a relative indicator to how quickly each generation should be processed, with a higher number indicating that it should take less time. This can be changed by using the slider control, or by manually entering into the textbox. Only integers between 0 (non-inclusive) and 100 (inclusive) are allowed.</dd></dl></li>
+                                <li class="list-group-item"><dl class="dl-horizontal"><dt>Clear</dt><dd>This affects the cells within the grid. This button sets all the cells within the grid to a dead state, allowing for a clean grid.</dd></dl></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="center">
+                        <ul id="helpPagination" class="pagination">
+                            <li class="helpPanelItem active" data-page="1"><a class="helpPanelButton" href="#" data-target="#contents" data-page="1">Contents</a></li>
+                            <li class="helpPanelItem" data-page="2"><a class="helpPanelButton" href="#" data-target="#intro" data-page="2">Introduction</a></li>
+                            <li class="helpPanelItem" data-page="3"><a class="helpPanelButton" href="#" data-target="#ui" data-page="3">UI</a></li>
+                            <li class="helpPanelItem" data-page="4"><a class="helpPanelButton" href="#" data-target="#modes" data-page="4">Play/Edit Mode</a></li>
+                            <li class="helpPanelItem" data-page="5"><a class="helpPanelButton" href="#" data-target="#patterns" data-page="5">Patterns</a></li>
+                            <li class="helpPanelItem" data-page="6"><a class="helpPanelButton" href="#" data-target="#settings" data-page="6">Settings</a></li>
+                        </ul>
+                    </div>
+                        
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -98,7 +174,7 @@
                     <p><b><a href="http://ocanvas.org/">oCanvas</a></b> - Canvas drawing made easy.</p>
                     <p><b><a href="https://qunitjs.com/">QUnit</a></b> - Powerful unit testing framework.</p>
                     <p><b><a href="http://jquery.com/">jQuery</a></b> - Feature rich library to each the usage of JavaScript.</p>
-                    <p><b><a href="http://getbootstrap.com/">Bootstrap</a></b> - Framework to develop responsive web pages.</p>
+                    <p><b><a href="http://getbootstrap.com/">Bootstrap</a></b> - Framework to develop responsive web Panels.</p>
                     <p><b><a href="http://glyphicons.com/">GLYPHICONS</a></b> - Library of monochromatic icons and symbols.</p>
                 </div>
 
@@ -121,7 +197,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="./about">Game of Life</a>
+                    <span class="navbar-brand">Game of Life</span>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -149,7 +225,6 @@
                                     </span><input type="button" value="Clear" id="clearGrid" class="btn btn-default maxWidth"></span>
                                    </span><br class="clear"></li>
                             </ul></li>
-                            <li><a href="" data-toggle="modal" data-target="#aboutModal">About</a></li>
                             <li><a href="" data-toggle="modal" data-target="#helpModal">Help</a></li>
                             <li><a href="" data-toggle="modal" data-target="#linksModal">Links</a></li>
                         </li>
